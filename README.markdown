@@ -16,11 +16,29 @@ Dependencies
 Installation
 ------------
 
+### Configuration
 Installing `listless` requires the Android SDK with the `android` executable on the `path`. Inside your `listless` checkout directory, type: 
 
     android update project --path . 
 
-This will generate the `local.properties` and `proguard` configuration required. If you have correctly linked to the `thedroid` library as shown above, then installation 'should' proceed.
+This will generate the `local.properties` and `proguard` configuration required. The `android update project` command also provides you with other project configuration options, such as the target Android OS. For a full list of configuration options, consult the [Android Developer Documentation](http://developer.android.com/tools/projects/projects-cmdline.html#UpdatingAProject). 
+
+### Target Android OS
+
+`listless` has been written to operate on any 2.2 OS of Android (Froyo). However, it is possible to build `listless` for a different target OS. As mentioned above, using `android update project` is the approach to specify the target OS. In order to see a list of OS that your Android tools currently support, type: 
+
+    android list targets
+
+The output of this will provide each supported OS with an `id`. This `id` should be specified as the value for the `--target` parameter in the `android update project` command. E.g.
+
+    android update project --path . --target android-8
+
+
+### Installation
+
+If you have correctly linked to the `thedroid` library as shown above and configured your project correctly, then installation 'should' proceed. Installation and deployment to your system (connected device or running emulator) is achieved through the `ant` build tools. Specifically: 
+
+    ant debug install
 
 ### Troubleshooting
 
