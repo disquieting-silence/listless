@@ -1,16 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:dsq="http://schemas.android.com/apk/res/dsq.listless"
               android:layout_width="fill_parent"
-              android:layout_height="fill_parent">
+              android:layout_height="fill_parent"
+              android:orientation="vertical">
 
-    <ListView android:id="@android:id/list"
-              android:layout_width="fill_parent"
+
+    <LinearLayout android:layout_width="fill_parent"
               android:layout_height="wrap_content"
-              android:layout_weight="1"/>
-    <TextView android:id="@android:id/empty"
-              android:layout_width="fill_parent"
-              android:layout_height="wrap_content"
-              android:text="@string/manage_list_empty"/>
+              android:layout_weight="10"
+              android:background="@drawable/paper"
+              android:orientation="horizontal">
+
+        <LinearLayout style="@style/Sidebar">
+
+
+        </LinearLayout>
+
+        <ListView android:id="@android:id/list"
+                  android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_weight="1"
+                  android:padding="5px"
+                  android:divider="#6988c6"
+                  android:listSelector="@drawable/list_selector"
+                  android:dividerHeight="2px"
+                  android:cacheColorHint="#00000000"/>
+        <TextView android:id="@android:id/empty"
+                  android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
+                  android:paddingLeft="10px"
+                  android:text="@string/manage_list_empty"/>
+    </LinearLayout>
+
+
 
 </LinearLayout>
