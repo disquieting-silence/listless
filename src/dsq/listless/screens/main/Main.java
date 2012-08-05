@@ -55,6 +55,9 @@ public class Main extends ListActivity
     private TextDialog textDialog = new DefaultTextDialog(this);
     private StateExtractor extractor = new DefaultStateExtractor();
     
+    private final Action manageScrollsAction = new ManageScrollsAction();
+    private final Action addItemAction = new AddItemAction();
+    
     private World world;
     private WorldDbAdapter wAdapter;
     private final String NEW_TITLE = "New";
@@ -75,8 +78,8 @@ public class Main extends ListActivity
 
         registerForContextMenu(getListView());
 
-        addButtonAction(R.id.manage_scrolls, new ManageScrollsAction());
-        addButtonAction(R.id.add_item, new AddItemAction());
+        addButtonAction(R.id.manage_scrolls, manageScrollsAction);
+        addButtonAction(R.id.add_item, addItemAction);
 
         final long scrollId = getScrollId(savedInstanceState);
         openScrollId(scrollId);
@@ -98,12 +101,16 @@ public class Main extends ListActivity
     }
     
     private void openScrollId(long id) {
-        final Cursor cursor = sAdapter.fetchById(id);
-        final String title = DbUtils.getColumn(cursor, ScrollTable.TITLE);
-        setScrollTitle(title);
         world = new World(id);
         wAdapter.update(world);
-        refreshList();
+        final Cursor cursor = sAdapter.fetchById(id);
+        if (id > -1 && cursor.moveToFirst()) {
+            final String title = DbUtils.getColumn(cursor, ScrollTable.TITLE);
+            setScrollTitle(title);
+            refreshList();
+        } else {
+            manageScrollsAction.run(this);
+        }
         cursor.close();
     }
 
@@ -174,6 +181,8 @@ public class Main extends ListActivity
     protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
         if (resultCode == RESULT_OK && requestCode == Requests.MANAGE_SCROLLS) {
             openScrollId(data.getLongExtra(ItemTable.SCROLL_ID, -1));
+        } else if (resultCode == RESULT_CANCELED && requestCode == Requests.MANAGE_SCROLLS) {
+            openScrollId(world.current);
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
