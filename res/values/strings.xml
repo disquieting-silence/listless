@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Listless</string>
+    <string name="main_list_empty">There are no items.</string>
+    <string name="manage_list_empty">There are no scrolls in the system.</string>
+    <string name="main_menu_new_scroll">New</string>
+    <string name="main_menu_manage_scrolls">Scrolls</string>
+    <string name="main_add_item">Add Item</string>
+    
+    <string name="main_context_edit_item">Edit</string>
+    <string name="main_context_delete_item">Delete</string>
+
+    <string name="manage_context_edit_scroll">Edit</string>
+    <string name="manage_context_delete_scroll">Delete</string>
+    <string name="manage_context_open_scroll">Open</string>
+</resources>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:dsq="http://schemas.android.com/apk/res/dsq.listless"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:orientation="vertical">
+
+
+    <LinearLayout android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_weight="10"
+                  android:background="@drawable/paper"
+                  android:orientation="horizontal">
+
+        <LinearLayout style="@style/Sidebar">
+            <dsq.listless.xml.SidebarIconLayout
+                        android:id="@+id/move_item_up"
+                        dsq:icon="move_up_button"
+                        android:paddingTop="8px"
+                        style="@style/SidebarIcon"/>
+            <dsq.listless.xml.SidebarIconLayout
+                    android:id="@+id/check_item"
+                    dsq:icon="check_button"
+                    style="@style/SidebarIcon"/>
+            <dsq.listless.xml.SidebarIconLayout
+                    android:id="@+id/move_item_down"
+                    dsq:icon="move_down_button"
+                    android:paddingBottom="8px"
+                    style="@style/SidebarIcon"/>
+
+
+            <dsq.listless.xml.SidebarIconLayout
+                    android:id="@+id/manage_scrolls"
+                    dsq:icon="manage_scrolls_button"
+                    android:paddingTop="8px"
+                    style="@style/SidebarIcon"/>
+
+            <dsq.listless.xml.SidebarIconLayout
+                    android:id="@+id/new_scroll"
+                    dsq:icon="new_scroll_button"
+                    android:paddingBottom="8px"
+                    style="@style/SidebarIcon"/>
+
+            <dsq.listless.xml.SidebarIconLayout
+                    android:id="@+id/add_item"
+                    dsq:icon="pencil_button"
+                    android:paddingTop="8px"
+                    style="@style/SidebarIcon"/>
+
+
+
+
+        </LinearLayout>
+
+    <ListView android:id="@android:id/list"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:layout_weight="1"
+              android:padding="5px"
+              android:divider="#6988c6"
+              android:listSelector="@drawable/list_selector"
+              android:dividerHeight="2px"
+              android:cacheColorHint="#00000000"/>
+    <TextView android:id="@android:id/empty"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:paddingLeft="10px"
+              android:text="@string/main_list_empty"/>
+
+
+
+    </LinearLayout>
+
+
+    <TextView android:id="@+id/scroll_title"
+              android:layout_width="fill_parent"
+              android:textSize="22sp"
+              android:padding="5px"
+              android:gravity="center"
+              android:layout_height="wrap_content"/>
+
+</LinearLayout>
+

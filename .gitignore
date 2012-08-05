@@ -1,0 +1,8 @@
+/out
+*.iws
+/bin
+build.xml
+/gen
+local.properties
+proguard.cfg
+listless.iws

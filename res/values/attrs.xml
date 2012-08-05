@@ -1,0 +1,5 @@
+<resources>
+  <declare-styleable name="SidebarIconLayout">
+      <attr name="icon" format="string"/>
+  </declare-styleable>
+</resources>

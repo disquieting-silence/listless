@@ -1,0 +1,32 @@
+Functions necessary
+
+
+ - create a scroll       Inventory -> Menu -> New
+ - rename a scroll      Inventory -> Menu -> Scrolls -> [> Edit]
+ - delete a scroll      Inventory -> Menu -> Scrolls -> [> Delete]
+ - list scrolls         Inventory -> Menu -> Scrolls
+
+ - open a scroll       Inventory -> Menu -> Scrolls -> [> Open]
+
+ - add an item         Inventory -> Add Item
+ - edit an item        Inventory -> [Edit]
+ - delete an item      Inventory -> [Delete]
+
+ - move an item?      N/A
+ - check an item?     N/A
+
+ Create a scroll: Inventory -> +
+ Rename a scroll: Inventory -> DblClick
+ Delete a scroll: Inventory -> List -> [Close]
+ List scrolls: Inventory -> List
+
+ Open a scroll: Inventory -> List -> Click
+
+ Add an item:   Inventory -> +Item
+ Edit an item: Inventory + [DblClick]
+ Delete an item: Inventory + [X]
+
+ Move an item: Inventory + Select + Up/Down
+ Check of an item: Inventory + Select + Tick
+
+
