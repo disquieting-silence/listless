@@ -20,6 +20,11 @@
                     android:paddingTop="8px"
                     style="@style/SidebarIcon"/>
 
+            <dsq.listless.xml.SidebarIconLayout
+                    android:id="@+id/new_scroll"
+                    dsq:icon="new_scroll_button"
+                    android:paddingBottom="8px"
+                    style="@style/SidebarIcon"/>
 
         </LinearLayout>
 

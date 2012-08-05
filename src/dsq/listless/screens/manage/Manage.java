@@ -15,6 +15,7 @@ import android.widget.AdapterView;
 import dsq.listless.R;
 import dsq.listless.action.Action;
 import dsq.listless.action.CancelAction;
+import dsq.listless.action.NewScrollAction;
 import dsq.listless.db.app.AppDb;
 import dsq.listless.db.app.ListlessDb;
 import dsq.listless.db.general.DefaultSimpleDbAdapter;
@@ -59,6 +60,7 @@ public class Manage extends ListActivity {
         registerForContextMenu(getListView());
         
         addButtonAction(R.id.back, new CancelAction());
+        addButtonAction(R.id.new_scroll, new NewScrollAction());
         refreshList();
     }
 
@@ -72,10 +74,28 @@ public class Manage extends ListActivity {
         final PlainViewBinder binder = new DefaultPlainViewBinder();
         lists.refreshAll(this, sAdapter, getListView(), new ComponentIndex(R.layout.manage_list_row), mapping, binder);
     }
+    
+    private void openScroll(long id) {
+        final Intent resultIntent = new Intent();
+        resultIntent.putExtra(ItemTable.SCROLL_ID, id);
+        setResult(RESULT_OK, resultIntent);
+        finish();
+    }
 
     @Override
     protected Dialog onCreateDialog(final int id) {
         switch (id) {
+            case Dialogs.ADD_SCROLL_TITLE: {
+                return textDialog.dialog("Title for Scroll: ", "", new DialogListener() {
+                    @Override
+                    public void onSuccess(final String value) {
+                        final ContentValues values = new ContentValues();
+                        values.put(ScrollTable.TITLE, value);
+                        final long newId = sAdapter.create(values);
+                        openScroll(newId);
+                    }
+                });
+            }
             case Dialogs.EDIT_SCROLL_TITLE: {
                 final ContentValues values = new ContentValues();
                 final Intent intent = getIntent();
@@ -119,10 +139,7 @@ public class Manage extends ListActivity {
                 return true;
             }
             case R.id.open_scroll: {
-                final Intent resultIntent = new Intent();
-                resultIntent.putExtra(ItemTable.SCROLL_ID, info.id);
-                setResult(RESULT_OK, resultIntent);
-                finish();
+                openScroll(info.id);
                 return true;
             }
         }

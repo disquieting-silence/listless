@@ -75,7 +75,6 @@ public class Main extends ListActivity
 
         registerForContextMenu(getListView());
 
-        addButtonAction(R.id.new_scroll, new NewScrollAction());
         addButtonAction(R.id.manage_scrolls, new ManageScrollsAction());
         addButtonAction(R.id.add_item, new AddItemAction());
 
@@ -98,10 +97,8 @@ public class Main extends ListActivity
         }
     }
     
-    private void openScrollId(long rawId) {
-        final Cursor rawCursor = sAdapter.fetchById(rawId);
-        final long id = rawCursor.moveToFirst() ? rawId : addScroll(NEW_TITLE);
-        final Cursor cursor = rawCursor.moveToFirst() ? rawCursor : sAdapter.fetchById(id);
+    private void openScrollId(long id) {
+        final Cursor cursor = sAdapter.fetchById(id);
         final String title = DbUtils.getColumn(cursor, ScrollTable.TITLE);
         setScrollTitle(title);
         world = new World(id);
@@ -126,15 +123,6 @@ public class Main extends ListActivity
     @Override
     protected Dialog onCreateDialog(final int id) {
         switch (id) {
-            case Dialogs.ADD_SCROLL_TITLE: {
-                return textDialog.dialog("Title for Scroll: ", "", new DialogListener() {
-                    @Override
-                    public void onSuccess(final String value) {
-                        final long scrollId = addScroll(value);
-                        openScrollId(scrollId);
-                    }
-                });
-            }
             case Dialogs.ADD_ITEM_TITLE: {
                 return textDialog.dialog("Item: ", "", new DialogListener() {
                     @Override
@@ -169,12 +157,6 @@ public class Main extends ListActivity
     private void setScrollTitle(final String value) {
         final TextView scrollTitle = (TextView)findViewById(R.id.scroll_title);
         scrollTitle.setText(value);
-    }
-
-    private long addScroll(final String value) {
-        final ContentValues values = new ContentValues();
-        values.put(ScrollTable.TITLE, value);
-        return sAdapter.create(values);
     }
 
     @Override
