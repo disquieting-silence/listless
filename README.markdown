@@ -13,6 +13,24 @@ Dependencies
     android.library.reference.1=../libs/thedroid
 
 
+Installation
+------------
+
+Installing `listless` requires the Android SDK with the `android` executable on the `path`. Inside your `listless` checkout directory, type: 
+
+    android update project --path . 
+
+This will generate the `local.properties` and `proguard` configuration required. If you have correctly linked to the `thedroid` library as shown above, then installation 'should' proceed.
+
+### Troubleshooting
+
+Generating a build requires all involved projects to have a valid build script. If this is not the case, you will commonly see this error:
+
+    sdk.dir is missing. Make sure to generate local.properties using 'android update project' or to inject it through an env var
+
+This error can occur for either `listless` itself, or any dependent projects (such as `thedroid`). As the error message suggests, the solution is to call `android update project` with the relevant parameters for the problem project. A full guide to updating projects via the command line can be found [here.](http://developer.android.com/tools/projects/projects-cmdline.html#UpdatingAProject)
+
+
 Screenshots
 -----------
 
