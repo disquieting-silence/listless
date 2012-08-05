@@ -102,15 +102,17 @@ public class Manage extends ListActivity {
                 final long scrollId = intent.getLongExtra(CONTEXT_DIALOG, -1);
                 intent.removeExtra(CONTEXT_DIALOG);
                 final Cursor cursor = sAdapter.fetchById(scrollId);
-                final String title = DbUtils.getColumn(cursor, ScrollTable.TITLE);
-                return textDialog.dialog("Title for Scroll: ", title, new DialogListener() {
-                    @Override
-                    public void onSuccess(final String value) {                         
-                        values.put(ScrollTable.TITLE, value);
-                        sAdapter.updateById(scrollId, values);
-                        refreshList();
-                    }
-                });
+                if (cursor.moveToFirst()) {
+                    final String title = DbUtils.getColumn(cursor, ScrollTable.TITLE);
+                    return textDialog.dialog("Title for Scroll: ", title, new DialogListener() {
+                        @Override
+                        public void onSuccess(final String value) {
+                            values.put(ScrollTable.TITLE, value);
+                            sAdapter.updateById(scrollId, values);
+                            refreshList();
+                        }
+                    });
+                }
             }
         }
         return null;
