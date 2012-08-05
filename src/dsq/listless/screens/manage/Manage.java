@@ -13,6 +13,8 @@ import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
 import dsq.listless.R;
+import dsq.listless.action.Action;
+import dsq.listless.action.CancelAction;
 import dsq.listless.db.app.AppDb;
 import dsq.listless.db.app.ListlessDb;
 import dsq.listless.db.general.DefaultSimpleDbAdapter;
@@ -25,6 +27,7 @@ import dsq.listless.screens.general.DialogListener;
 import dsq.listless.screens.general.TextDialog;
 import dsq.listless.ui.DefaultPlainViewBinder;
 import dsq.listless.ui.PlainViewBinder;
+import dsq.listless.xml.SidebarIconLayout;
 import dsq.thedroid.db.DbLifecycle;
 import dsq.thedroid.db.DbUtils;
 import dsq.thedroid.db.DefaultDbLifecycle;
@@ -54,8 +57,15 @@ public class Manage extends ListActivity {
         db = lifecycle.open(this, AppDb.value);
         sAdapter = new DefaultSimpleDbAdapter(db, ListlessDb.SCROLL_TABLE);
         registerForContextMenu(getListView());
-
+        
+        addButtonAction(R.id.back, new CancelAction());
         refreshList();
+    }
+
+    // FIX 5/08/12 Dupe with Main
+    private void addButtonAction(final int buttonId, final Action action) {
+        final SidebarIconLayout layout = (SidebarIconLayout)findViewById(buttonId);
+        layout.setAction(this, action);
     }
 
     private void refreshList() {

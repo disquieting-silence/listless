@@ -14,6 +14,11 @@
               android:orientation="horizontal">
 
         <LinearLayout style="@style/Sidebar">
+            <dsq.listless.xml.SidebarIconLayout
+                    android:id="@+id/back"
+                    dsq:icon="back_button"
+                    android:paddingTop="8px"
+                    style="@style/SidebarIcon"/>
 
 
         </LinearLayout>
