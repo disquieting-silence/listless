@@ -147,15 +147,17 @@ public class Main extends ListActivity
                 final long itemId = intent.getLongExtra(CONTEXT_DIALOG, -1);
                 intent.removeExtra(CONTEXT_DIALOG);
                 final Cursor cursor = iAdapter.fetchById(itemId);
-                cursor.moveToFirst();
-                final String name = DbUtils.getColumn(cursor, ItemTable.NAME);
-                return textDialog.dialog("Item: ", name, new DialogListener() {
-                    @Override
-                    public void onSuccess(final String value) {
-                        iAdapter.updateById(itemId, ItemTable.NAME, value);
-                        refreshList();
-                    }
-                });
+                // FIX 5/08/12 Work out how this itemId is incorrect. This if check isn't good enough.
+                if (cursor.moveToFirst()) {
+                    final String name = DbUtils.getColumn(cursor, ItemTable.NAME);
+                    return textDialog.dialog("Item: ", name, new DialogListener() {
+                        @Override
+                        public void onSuccess(final String value) {
+                            iAdapter.updateById(itemId, ItemTable.NAME, value);
+                            refreshList();
+                        }
+                    });
+                }
             }
         }
         return null;
